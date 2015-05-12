@@ -17,6 +17,16 @@
     <button id="submit" type="submit" class="btn btn-success">Submit</button>
 </form>
 
+<form action="/survey/<%=@survey.id%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <label for="new_name">Enter a new survey name here:</label>
+    <input id="new_name" name="new_name" class="form-control" type="text">
+  <div>
+    <br>
+    <button id="update" class="btn btn-success">Update</button>
+</form>
+
 <br><br>
 
 <p>

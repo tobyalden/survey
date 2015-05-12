@@ -44,3 +44,17 @@ post('/survey/:id') do
   @questions = Question.get_by_survey_id(survey_id)
   erb(:survey)
 end
+
+patch('/survey/:id') do
+  survey_id = params.fetch("id").to_i
+  @survey = Survey.find(survey_id)
+  new_name = params.fetch('new_name').strip()
+  if(new_name != "")
+    @survey.update({:name => new_name})
+    @message = "Updated survey name."
+  else
+    @message = "ERROR: Invalid survey name."
+  end
+  @questions = Question.get_by_survey_id(survey_id)
+  erb(:survey)
+end
