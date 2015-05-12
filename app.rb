@@ -9,11 +9,17 @@ also_reload('lib/**/*.rb')
 
 get('/') do
   @surveys = Survey.all()
+  @message = ""
   erb(:index)
 end
 
 post('/') do
-  Survey.create({:name => params.fetch('survey_name')})
+  @survey = Survey.new({:name => params.fetch('survey_name')})
+  if(@survey.save())
+    @message = "Created new survey."
+  else
+    @message = "ERROR: Survey name blank."
+  end
   @surveys = Survey.all()
   erb(:index)
 end

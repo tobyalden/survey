@@ -5,4 +5,9 @@ describe(Survey) do
     survey = Survey.new({:name => ""})
     expect(survey.save()).to(eq(false))
   end
+
+  it("ensures the first letter is capitalized") do
+    survey = Survey.create({:name => "should?"})
+    expect(survey.name()).to(eq("Should?"))
+  end
 end
