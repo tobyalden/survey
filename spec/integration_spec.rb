@@ -62,3 +62,26 @@ describe("The path to delete a survey", {:type => :feature}) do
     expect(page).to(have_content("Deleted"))
   end
 end
+
+describe("The path to add an answer to a question in a survey", {:type => :feature}) do
+  it("displays a form which adds a new answer to the question.") do
+    test_survey = Survey.create({:name => "Should Tim apologize to Doug's wife for executing him?"})
+    visit('/')
+    test_question = Question.create({:description => "What it do?", :survey_id => test_survey.id})
+    click_link(test_survey.id)
+    click_link(test_question.id)
+    expect(page).to(have_content("What it do?"))
+    expect(page).to(have_content("Answers:"))
+  end
+end
+
+# describe("The path to add an answer to a question in a survey", {:type => :feature}) do
+#   it("displays a form which adds a new answer to the question.") do
+#     test_survey = Survey.create({:name => "Should Tim apologize to Doug's wife for executing him?"})
+#     visit('/')
+#     test_question = Question.create({:description => "What it do?", :survey_id => test_survey.id})
+#     click_link(test_survey.id)
+#     click_link(test_question.id)
+#
+#   end
+# end

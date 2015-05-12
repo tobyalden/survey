@@ -3,6 +3,7 @@ require('sinatra/reloader')
 require('sinatra/activerecord')
 require('./lib/question.rb')
 require('./lib/survey.rb')
+require('./lib/answer.rb')
 require('pg')
 require('pry')
 also_reload('lib/**/*.rb')
@@ -66,4 +67,12 @@ delete('/survey/:id') do
   survey.delete
   @surveys = Survey.all()
   erb(:index)
+end
+
+get('/question/:id') do
+  question_id = params.fetch("id").to_i
+  @question = Question.find(question_id)
+  @message = ""
+  @answers = Answer.get_by_question_id(question_id)
+  erb(:question)
 end

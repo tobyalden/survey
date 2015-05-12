@@ -4,7 +4,7 @@
 
 <ul>
     <% @questions.each do |question| %>
-      <li> <%= question.description %> </li>
+      <li> <a id="<%= question.id %>" href="/question/<%= question.id %>"><%= question.description %> </a></li>
     <% end %>
 </ul>
 
