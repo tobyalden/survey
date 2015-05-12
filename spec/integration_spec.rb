@@ -87,3 +87,14 @@ describe("The path to add an answer to a question in a survey", {:type => :featu
     expect(page).to(have_content("What they don't think it be."))
   end
 end
+
+describe("The path to take an individual survey", {:type => :feature}) do
+  it("displays a specific survey, and displays the associated questions and answers.") do
+    test_survey = Survey.create({:name => "Should Tim apologize to Doug's wife for executing him?"})
+    visit('/')
+    test_question = Question.create({:description => "What it do?", :survey_id => test_survey.id})
+    click_link(test_survey.id)
+    click_button("take_survey")
+    expect(page).to(have_content("You are taking survey"))
+  end
+end

@@ -89,3 +89,9 @@ post('/question/:id') do
   @answers = Answer.get_by_question_id(question_id)
   erb(:question)
 end
+
+get('/take_survey/:id') do
+  survey_id = params.fetch("id").to_i
+  @survey = Survey.find(survey_id)
+  erb(:take_survey)
+end

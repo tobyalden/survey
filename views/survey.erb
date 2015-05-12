@@ -1,5 +1,10 @@
 <h1><%= @survey.name() %></h1>
 
+<form action="/take_survey/<%=@survey.id%>" method="get">
+  <button id="take_survey" name="take_survey" class="btn btn-success">Take Survey</button>
+</form>
+
+
 <h3>Questions:</h3>
 
 <ul>

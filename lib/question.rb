@@ -1,6 +1,7 @@
 class Question < ActiveRecord::Base
   validates(:description, :presence => true)
   belongs_to(:survey)
+  has_many(:answer)
 
   define_singleton_method(:get_by_survey_id) do |find_survey_id|
     survey_questions = []
