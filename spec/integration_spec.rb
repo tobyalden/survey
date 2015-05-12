@@ -36,9 +36,9 @@ describe("The path to add a question to a survey", {:type => :feature}) do
     test_survey = Survey.create({:name => "Should Tim apologize to Doug's wife for executing him?"})
     visit('/')
     click_link(test_survey.id)
-    fill_in("question", :with => "How much do you like Tim on a scale of 1 to 10?")
-    click_button("submit")
-    expect(page).to(have_content("How much do you like Tim on a scale of 1 to 10?"))
+    fill_in("question", :with => "Is Tim evil?")
+    click_button("add_question")
+    expect(page).to(have_content("Is Tim evil?"))
   end
 end
 
@@ -50,5 +50,15 @@ describe("The path to update a survey", {:type => :feature}) do
     fill_in("new_name", :with => "How much do you like Tim on a scale of 1 to 100?")
     click_button("update")
     expect(page).to(have_content("How much do you like Tim on a scale of 1 to 100?"))
+  end
+end
+
+describe("The path to delete a survey", {:type => :feature}) do
+  it("displays a button on an individual survey's page to delete that survey and return you to the index.") do
+    test_survey = Survey.create({:name => "Should Tim apologize to Doug's wife for executing him?"})
+    visit('/')
+    click_link(test_survey.id)
+    click_button("delete")
+    expect(page).to(have_content("Deleted"))
   end
 end

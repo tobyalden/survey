@@ -12,23 +12,39 @@
   <div class="form-group">
     <label for="question">Enter a question here:</label>
     <input id="question" class="form-control" name="question" type="text">
-  <div>
-    <br>
-    <button id="submit" type="submit" class="btn btn-success">Submit</button>
+  </div>
+  <button id="add_question" class="btn btn-success">Add Question</button>
+  <br>
 </form>
+
+<br>
 
 <form action="/survey/<%=@survey.id%>" method="post">
   <input type="hidden" name="_method" value="patch">
   <div class="form-group">
     <label for="new_name">Enter a new survey name here:</label>
     <input id="new_name" name="new_name" class="form-control" type="text">
-  <div>
-    <br>
-    <button id="update" class="btn btn-success">Update</button>
+  </div>
+  <button id="update" class="btn btn-success">Update</button>
+  <br>
 </form>
 
-<br><br>
+<br>
 
-<p>
-  <%= @message %>
-</p>
+<form action="/survey/<%=@survey.id %>" method="post">
+    <div class="form-group">
+      <input type="hidden" name="_method" value="delete">
+      <button class="btn btn-danger" name="delete" id="delete">Delete</button>
+    </div>
+</form>
+
+<%= @message %>
+
+<br>
+<br>
+
+<form>
+    <div class="form-group">
+      <a href="/" class="btn btn-info" role="button">Home</a>
+    </div>
+</form>

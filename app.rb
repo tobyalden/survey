@@ -58,3 +58,12 @@ patch('/survey/:id') do
   @questions = Question.get_by_survey_id(survey_id)
   erb(:survey)
 end
+
+delete('/survey/:id') do
+  survey_id = params.fetch('id').to_i
+  survey = Survey.find(survey_id)
+  @message = "Deleted Survey: #{survey.name}"
+  survey.delete
+  @surveys = Survey.all()
+  erb(:index)
+end
