@@ -12,5 +12,4 @@ class Question < ActiveRecord::Base
     end
     return survey_questions
   end
-
 end

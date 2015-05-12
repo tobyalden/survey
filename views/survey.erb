@@ -10,6 +10,11 @@
 <ul>
     <% @questions.each do |question| %>
       <li> <a id="<%= question.id %>" href="/question/<%= question.id %>"><%= question.description %> </a></li>
+      <ol>
+      <% question.answer().each() do |answer| %>
+        <li> <%= answer.description %> </li>
+      <% end %>
+      </ol>
     <% end %>
 </ul>
 
@@ -21,6 +26,11 @@
   <button id="add_question" class="btn btn-success">Add Question</button>
   <br>
 </form>
+
+<form>
+  <input type="checkbox" name="multiple_answers_allowed" value="multiple_answers_allowed">Multiple Answers Allowed<br>
+</form>
+
 
 <br>
 
