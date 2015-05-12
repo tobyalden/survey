@@ -1,1 +1,20 @@
-<h1>You are taking survey: <%= @survey.name() %></h1>
+<h3>You are taking survey: <%= @survey.name() %></h3>
+
+<% @survey.question().each() do |question| %>
+  <%= question.description() %>
+  <form>
+    <ol>
+    <% question.answer().each() do |answer| %>
+      <!-- Hello World! -->
+      <li><input type="radio" name="answer_radio" value="<%=answer.id%>" checked><%=answer.description%></li>
+    <% end %>
+    </ol>
+  </form>
+<% end %>
+
+<form>
+  <br>
+    <div class="form-group">
+      <a href="/survey/<%= @survey.id %>" id="<%= @survey.id %>" class="btn btn-info" role="button"> Back </a>
+    </div>
+</form>
