@@ -8,5 +8,12 @@ require('pry')
 also_reload('lib/**/*.rb')
 
 get('/') do
+  @surveys = Survey.all()
+  erb(:index)
+end
+
+post('/') do
+  Survey.create({:name => params.fetch('survey_name')})
+  @surveys = Survey.all()
   erb(:index)
 end

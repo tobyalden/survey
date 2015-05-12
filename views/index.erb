@@ -1,1 +1,16 @@
 <h1>Surveys:</h1>
+
+<ul>
+    <% @surveys.each do |survey| %>
+      <li><a href="/survey/<%= survey.id %>" id="<%= survey.id %>"> <%= survey.name %> </a></li>
+    <% end %>
+</ul>
+
+<form action="/" method="post">
+  <div class="form-group">
+    <label for="survey_name">Enter a survey name here:</label>
+    <input id="survey_name" class="form-control" name="survey_name" type="text">
+  <div>
+    <br>
+    <button id="submit" type="submit" class="btn btn-success">Submit</button>
+</form>
