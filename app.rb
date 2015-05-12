@@ -95,3 +95,9 @@ get('/take_survey/:id') do
   @survey = Survey.find(survey_id)
   erb(:take_survey)
 end
+
+get('/submit_survey') do
+  @message = "Thank you for submitting your survey!"
+  @surveys = Survey.all()
+  erb(:index)
+end
