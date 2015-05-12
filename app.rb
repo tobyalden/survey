@@ -76,3 +76,16 @@ get('/question/:id') do
   @answers = Answer.get_by_question_id(question_id)
   erb(:question)
 end
+
+post('/question/:id') do
+  question_id = params.fetch("id").to_i
+  @question = Question.find(question_id)
+  answer = Answer.new({:description => params.fetch("answer"), :question_id => question_id})
+  if(answer.save())
+    @message = "Created new answer."
+  else
+    @message = "ERROR: Answer field blank."
+  end
+  @answers = Answer.get_by_question_id(question_id)
+  erb(:question)
+end

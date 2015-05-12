@@ -7,3 +7,14 @@
       <li> <%= answer.description %> </li>
     <% end %>
 </ul>
+
+<form action="/question/<%=@question.id%>" method="post">
+  <div class="form-group">
+    <label for="answer">Enter a answer here:</label>
+    <input id="answer" class="form-control" name="answer" type="text">
+  </div>
+  <button id="add_answer" class="btn btn-success">Add Answer</button>
+  <br>
+</form>
+
+<%= @message %>

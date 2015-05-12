@@ -75,13 +75,15 @@ describe("The path to add an answer to a question in a survey", {:type => :featu
   end
 end
 
-# describe("The path to add an answer to a question in a survey", {:type => :feature}) do
-#   it("displays a form which adds a new answer to the question.") do
-#     test_survey = Survey.create({:name => "Should Tim apologize to Doug's wife for executing him?"})
-#     visit('/')
-#     test_question = Question.create({:description => "What it do?", :survey_id => test_survey.id})
-#     click_link(test_survey.id)
-#     click_link(test_question.id)
-#
-#   end
-# end
+describe("The path to add an answer to a question in a survey", {:type => :feature}) do
+  it("displays a form which adds a new answer to the question.") do
+    test_survey = Survey.create({:name => "Should Tim apologize to Doug's wife for executing him?"})
+    visit('/')
+    test_question = Question.create({:description => "What it do?", :survey_id => test_survey.id})
+    click_link(test_survey.id)
+    click_link(test_question.id)
+    fill_in("answer", :with => "What they don't think it be.")
+    click_button("add_answer")
+    expect(page).to(have_content("What they don't think it be."))
+  end
+end
