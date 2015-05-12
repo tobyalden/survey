@@ -27,5 +27,20 @@ end
 get('/survey/:id') do
   survey_id = params.fetch("id").to_i
   @survey = Survey.find(survey_id)
+  @message = ""
+  @questions = Question.get_by_survey_id(survey_id)
+  erb(:survey)
+end
+
+post('/survey/:id') do
+  survey_id = params.fetch("id").to_i
+  @survey = Survey.find(survey_id)
+  question = Question.new({:description => params.fetch("question"), :survey_id => survey_id})
+  if(question.save())
+    @message = "Created new question."
+  else
+    @message = "ERROR: Question field blank."
+  end
+  @questions = Question.get_by_survey_id(survey_id)
   erb(:survey)
 end

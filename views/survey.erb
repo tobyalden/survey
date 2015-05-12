@@ -1,3 +1,24 @@
 <h1><%= @survey.name() %></h1>
 
 <h3>Questions:</h3>
+
+<ul>
+    <% @questions.each do |question| %>
+      <li> <%= question.description %> </li>
+    <% end %>
+</ul>
+
+<form action="/survey/<%=@survey.id%>" method="post">
+  <div class="form-group">
+    <label for="question">Enter a question here:</label>
+    <input id="question" class="form-control" name="question" type="text">
+  <div>
+    <br>
+    <button id="submit" type="submit" class="btn btn-success">Submit</button>
+</form>
+
+<br><br>
+
+<p>
+  <%= @message %>
+</p>

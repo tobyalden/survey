@@ -31,11 +31,13 @@ describe("The path to an individual survey's page", {:type => :feature}) do
   end
 end
 
-# describe("The path to add a question to a survey", {:type => :feature}) do
-#   it("displays a form on an individual survey's page to add a question to that survey.") do
-#     test_survey = Survey.create("Should Tim apologize to Doug's wife for executing him?")
-#     visit('/')
-#     click_link(test_survey.id)
-#     expect
-#   end
-# end
+describe("The path to add a question to a survey", {:type => :feature}) do
+  it("displays a form on an individual survey's page to add a question to that survey.") do
+    test_survey = Survey.create({:name => "Should Tim apologize to Doug's wife for executing him?"})
+    visit('/')
+    click_link(test_survey.id)
+    fill_in("question", :with => "How much do you like Tim on a scale of 1 to 10?")
+    click_button("submit")
+    expect(page).to(have_content("How much do you like Tim on a scale of 1 to 10?"))
+  end
+end
